@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Calculator</title>
 </head>
 <body>
+    <main id="container"></main>
     <div id="calculator">
+        <div id="screen">9876543210</div>
         <div id="top-row">
-            <div id="clear"></div>
-            <div id="positive-negative"></div>
-            <div id="percentage"></div>
-            <div id="divide" class="operator"></div>
+            <button id="clear">AC</button>
+            <button id="positive-negative">+/-</button>
+            <button id="percentage">%</button>
+            <button id="divide" class="button operator">/</button>
         </div>
         <div id="second-row">
-            <div id="seven"></div>
-            <div id="eight"></div>
-            <div id="nine"></div>
-            <div id="multiply" class="operator"></div>
+            <button id="seven" class="button number">7</button>
+            <button id="eight" class="button number">8</button>
+            <button id="nine" class="button number">9</button>
+            <button id="multiply" class="button operator">*</button>
         </div>
         <div id="third-row">
-            <div id="four"></div>
-            <div id="five"></div>
-            <div id="six"></div>
-            <div id="subtract" class="operator"></div>
+            <button id="four" class="button number">4</button>
+            <button id="five" class="button number">5</button>
+            <button id="six" class="button number">6</button>
+            <button id="subtract" class="button operator">-</button>
         </div>
         <div id="fourth-row">
-            <div id="one"></div>
-            <div id="two"></div>
-            <div id="three"></div>
-            <div id="add" class="operator"></div>
+            <button id="one" class="button number">1</button>
+            <button id="two" class="button number">2</button>
+            <button id="three" class="button number">3</button>
+            <button id="add" class="button operator">+</button>
         </div>
         <div id="bottom-row">
-            <div id="zero"></div>
-            <div id="decimal"></div>
-            <div id="equals"></div>
+            <button id="zero" class="button number">0</button>
+            <button id="decimal">.</button>
+            <button id="equals">=</button>
         </div>
     </div>
 

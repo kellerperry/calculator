@@ -1,6 +1,35 @@
-let number1;
+const DEFAULT_DISPLAY = 0;
+
+
+const calculator = document.querySelector("#container");
+const screen = document.querySelector("#screen");
+const numberButtons = document.querySelectorAll(".button.number");
+const operatorButtons = document.querySelectorAll(".button.operator");
+const topRow = document.querySelector("#top-row");
+
+let displayValue = DEFAULT_DISPLAY;
+let number1 = displayValue; 
 let number2;
 let operator;
+
+screen.innerText = displayValue;
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        displayValue = e.target.innerText;
+        screen.innerText = displayValue;
+    })
+})
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        operator = e.target.innerText;
+    })
+})
+
+
+// calculator.insertBefore(screen);
+
 
 
 function operate (operator, number1, number2) {
