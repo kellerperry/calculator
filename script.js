@@ -13,10 +13,14 @@ const operatorButtons = document.querySelectorAll(".button.operator");
 const allButtons = document.querySelectorAll("button");
 const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear");
+const deleteBtn = document.querySelector("#delete");
+const decimalBtn = document.querySelector("#decimal");
 
 
 clearBtn.addEventListener('click', clearDisplay);
 equalsBtn.addEventListener('click', evaluate);
+deleteBtn.addEventListener('click', deleteNum);
+decimalBtn.addEventListener('click', addDecimal);
 
 
 numberButtons.forEach(button => 
@@ -27,10 +31,16 @@ operatorButtons.forEach(button =>
     button.addEventListener('click', () => inputOperator(button.textContent))
 )
 
-
 function inputNumber(number) {
     if(display.textContent === "0") {
         display.textContent = "";
+    }
+    if(display.textContent.length >= 12 && display.textContent !== "Don't be silly") {
+        return;
+    }
+    if(operation == null && resetScreen) {
+        display.textContent = "";
+        resetScreen = false;
     }
     if(operation !== null && resetScreen) {
         display.textContent = "";
@@ -47,9 +57,30 @@ function inputOperator(operator) {
 }
 
 function evaluate() {
+    if (operation === null) return;
+    if(operation === "/" && display.textContent === "0") {
+        display.textContent = "Don't be silly"
+        number1 = DEFAULT_DISPLAY;
+        operation = null;
+        resetScreen = true;
+        return;
+    }
     number2 = display.textContent;
-    display.textContent = operate(operation, number1, number2);
+    display.textContent = roundNumber(operate(operation, number1, number2));
     operation = null
+    resetScreen = true;
+}
+
+
+function deleteNum() {
+    display.textContent = display.textContent.toString().slice(0, -1);
+}
+
+function addDecimal() {
+    if(display.textContent.includes(".")) {
+        return;
+    }
+    display.textContent += ".";
 }
 
 
@@ -86,6 +117,10 @@ function clearDisplay() {
     operation = null;
     number1 = DEFAULT_DISPLAY;
     number2 = "";
+}
+
+function roundNumber (number) {
+    return Math.round(number * 1000) / 1000;
 }
 
 window.onload = () => {
