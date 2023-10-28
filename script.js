@@ -4,6 +4,7 @@ let displayValue = DEFAULT_DISPLAY;
 let number1 = displayValue; 
 let number2;
 let operation = null;
+let resetScreen = false;
 
 const calculator = document.querySelector("#container");
 const display = document.querySelector("#display");
@@ -31,8 +32,9 @@ function inputNumber(number) {
     if(display.textContent === "0") {
         display.textContent = "";
     }
-    if(operation !== null) {
+    if(operation !== null && resetScreen) {
         display.textContent = "";
+        resetScreen = false;
     }
     display.textContent += number;
 }
@@ -41,6 +43,7 @@ function inputOperator(operator) {
     if(operation !== null) evaluate();
     number1 = display.textContent;
     operation = operator;
+    resetScreen = true;
 }
 
 function evaluate() {
