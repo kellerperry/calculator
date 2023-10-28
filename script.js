@@ -10,13 +10,12 @@ const display = document.querySelector("#display");
 const numberButtons = document.querySelectorAll(".button.number");
 const operatorButtons = document.querySelectorAll(".button.operator");
 const allButtons = document.querySelectorAll("button");
+const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear");
 
 
 clearBtn.addEventListener('click', clearDisplay);
-
-
-updateDisplay();
+equalsBtn.addEventListener('click', evaluate);
 
 
 numberButtons.forEach(button => 
@@ -32,13 +31,21 @@ function inputNumber(number) {
     if(display.textContent === "0") {
         display.textContent = "";
     }
+    if(operation !== null) {
+        display.textContent = "";
+    }
     display.textContent += number;
 }
 
 function inputOperator(operator) {
-    if (operation !== null)
     number1 = display.textContent;
     operation = operator;
+}
+
+function evaluate() {
+    number2 = display.textContent;
+    display.textContent = operate(operation, number1, number2);
+
 }
 
 function operate (operator, number1, number2) {
@@ -55,9 +62,11 @@ function updateDisplay() {
 
 function clearDisplay() {
     display.innerText = DEFAULT_DISPLAY;
-    operator = "";
+    operation = null;
     number1 = DEFAULT_DISPLAY;
     number2 = "";
 }
 
-
+window.onload = () => {
+    display.innerText = displayValue;
+}
