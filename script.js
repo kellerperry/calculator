@@ -1,58 +1,63 @@
 const DEFAULT_DISPLAY = 0;
 
-
-const calculator = document.querySelector("#container");
-const screen = document.querySelector("#screen");
-const numberButtons = document.querySelectorAll(".button.number");
-const operatorButtons = document.querySelectorAll(".button.operator");
-const topRow = document.querySelector("#top-row");
-
 let displayValue = DEFAULT_DISPLAY;
 let number1 = displayValue; 
 let number2;
-let operator;
+let operation = null;
 
-screen.innerText = displayValue;
-
-numberButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        displayValue = e.target.innerText;
-        screen.innerText = displayValue;
-    })
-})
-
-operatorButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        operator = e.target.innerText;
-    })
-})
+const calculator = document.querySelector("#container");
+const display = document.querySelector("#display");
+const numberButtons = document.querySelectorAll(".button.number");
+const operatorButtons = document.querySelectorAll(".button.operator");
+const allButtons = document.querySelectorAll("button");
+const clearBtn = document.querySelector("#clear");
 
 
-// calculator.insertBefore(screen);
+clearBtn.addEventListener('click', clearDisplay);
 
 
+updateDisplay();
+
+
+numberButtons.forEach(button => 
+    button.addEventListener('click', () => inputNumber(button.textContent))
+)
+
+operatorButtons.forEach(button => 
+    button.addEventListener('click', () => inputOperator(button.textContent))
+)
+
+
+function inputNumber(number) {
+    if(display.textContent === "0") {
+        display.textContent = "";
+    }
+    display.textContent += number;
+}
+
+function inputOperator(operator) {
+    if (operation !== null)
+    number1 = display.textContent;
+    operation = operator;
+}
 
 function operate (operator, number1, number2) {
-    if (operator === "+") return addition(number1, number2);
-    if (operator === "-") return subtraction(number1, number2);
-    if (operator === "*") return multiplication(number1, number2);
-    if (operator === "/") return division(number1, number2);
+    if (operator === "+") return number1 + number2;
+    if (operator === "-") return number1 - number2;
+    if (operator === "*") return number1 * number2;
+    if (operator === "/") return number1 /number2;
 }
 
-function addition (num1, num2) {   
-    return num1 + num2;
+
+function updateDisplay() {
+    display.innerText = displayValue;
 }
 
-function subtraction (num1, num2) {
-    return num1 - num2;
-}
-
-function multiplication (num1, num2) {
- return num1 * num2;
-}
-
-function division (num1, num2) {
- return num1 / num2;
+function clearDisplay() {
+    display.innerText = DEFAULT_DISPLAY;
+    operator = "";
+    number1 = DEFAULT_DISPLAY;
+    number2 = "";
 }
 
 
