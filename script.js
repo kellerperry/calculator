@@ -38,6 +38,7 @@ function inputNumber(number) {
 }
 
 function inputOperator(operator) {
+    if(operation !== null) evaluate();
     number1 = display.textContent;
     operation = operator;
 }
@@ -45,14 +46,31 @@ function inputOperator(operator) {
 function evaluate() {
     number2 = display.textContent;
     display.textContent = operate(operation, number1, number2);
-
+    operation = null
 }
 
+
 function operate (operator, number1, number2) {
-    if (operator === "+") return number1 + number2;
-    if (operator === "-") return number1 - number2;
-    if (operator === "*") return number1 * number2;
-    if (operator === "/") return number1 /number2;
+    if (operator === "+") return addition(number1, number2);
+    if (operator === "-") return subtraction(number1, number2);
+    if (operator === "*") return multiplication(number1, number2);
+    if (operator === "/") return division(number1, number2);
+}
+
+function addition (num1, num2) {   
+    return +num1 + +num2;
+}
+
+function subtraction (num1, num2) {
+    return num1 - num2;
+}
+
+function multiplication (num1, num2) {
+ return num1 * num2;
+}
+
+function division (num1, num2) {
+ return num1 / num2;
 }
 
 

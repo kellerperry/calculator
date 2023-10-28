@@ -27,29 +27,24 @@ button {
     border: solid 2px black;
     width: 150px;
     gap: 2px;
+    padding: 10px;
+}
+
+.row {
+    width: 140px;
+    margin: auto;
 }
 
 #display {
     border: 1px solid black;
     background-color: lightgray;
-    width: 150px;
+    width: 140px;
+    margin: auto;
     text-align: end;
 }
 
 #top-row {
     flex-grow: 1;
-}
-
-#second-row {
-
-}
-
-#third-row {
-    
-}
-
-#fourth-row {
-
 }
 
 #bottom-row {
